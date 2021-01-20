@@ -159,8 +159,10 @@ see in the interface.
 
 ![Screenshot](img/Picture3.png)
 > The user interface for our chatbot.
+
 ![Screenshot](img/Picture4.png)
 > Example of user interaction with the bot.
+
 ![Screenshot](img/Picture5.png)
 > Example of the bot randomizing its responses.
 
@@ -207,6 +209,7 @@ and give our model even greater accuracy.
 
 ![Screenshot](img/Picture7.png)
 > Stemming.
+
 ![Screenshot](img/Picture8.png)
 > Lemmatization.
 
