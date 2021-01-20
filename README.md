@@ -93,8 +93,14 @@ For our data we used this intent classification dataset centered around banking 
 
 **Source:** [*Efficient Intent Detection with Dual Sentence Encoders*](https://arxiv.org/abs/2003.04807)
 
+[Example of the data format in the dataset we used](img/Picture1.png)
+
 We then transformed this dataset into JSON format and manually inputted the respective responses 
 for each intent classification (average of 5 responses for each intent = 5 * 91 = 455 responses)
+
+[Example of the first tag, its patterns, and its responses in JSON format (in comparison
+to other intents, the amount of data this one holds is very small, as patterns in other intents can
+be hundreds of lines long)](img/Picture2.png)
 
 ## Preprocessing Data
 First, we take data from the JSON file and create a series of lists to store the various tags,
@@ -149,6 +155,10 @@ received by the user with the return button. This is not an oversight, but a des
 For styling, we use a CSS stylesheet called qdarkstyle. Which results in the dark mode styling you
 see in the interface.
 
+[The user interface for our chatbot.](img/Picture3.png)
+[Example of user interaction with the bot.](img/Picture4.png)
+[Example of the bot randomizing its responses.](img/Picture5.png)
+
 # Experiments Performed and Results
 
 ## Choosing Hyperparameters
@@ -167,6 +177,11 @@ per layer and increasing the number of epochs granted the highest model accuracy
 We also needed to avoid overfitting the model, so we needed to find the best spot where the
 accuracy to time trained ratio was maximal.
 
+[Results of hyperparameter choices.
+avg = (input size + output size)/2
+avg * 1/6 = (input size + output size)/12
+avg * 1/8 = (input size + output size)/16](img/Picture6.png)
+
 Accuracy peaks (with least chance of overfitting) with a combination of:
 - Epochs = 50
 - Number of neurons per dense layer (n) = avg * 1/6
@@ -184,16 +199,23 @@ Techniques like stemming, the reduction of a word to a root form, and lemmatizat
 reduction of a word to a root word, we theorized, could help us eliminate noise in our word data
 and give our model even greater accuracy.
 
+[Stemming.](img/Picture7.png)
+[Lemmatization.](img/Picture8.png)
+
 In addition to text normalization, we can eliminate other noise from our data in the form of
 removing stopwords.
 
 Stopwords are the most common words used in everyday language and usually provide no useful
 information to our model, decreasing the accuracy.
 
+[Example of stopwords used in a data mining library in the R language.](img/Picture9.png)
+
 ## Morphological Word Analysis: Text/Word Normalization (Results)
 We devised an experiment that counted the accuracy of the model (given the previously chosen
 parameters) when stemming, lemmatization, and neither were used with and without removing
 stopwords, resulting in 6 permutations of text augmentation.
+
+[Results of text normalization experiments. (Decimals represent accuracy of model)](img/Picture10.png)
 
 As shown in the results, removing stopwords was very detrimental to the accuracy of our bot.
 This outcome should be somewhat anticipated for a chatbot, but since there were so many
